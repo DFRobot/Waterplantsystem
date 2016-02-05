@@ -124,14 +124,14 @@ namespace Waterplantsystem
             arduino.pinMode(Water, PinMode.OUTPUT);
             arduino.pinMode(Buzzer, PinMode.OUTPUT);
             arduino.pinMode(KEY_PIN, PinMode.INPUT);
-            arduino.pinMode("A0", PinMode.INPUT);
-            arduino.pinMode("A1", PinMode.INPUT);
-            arduino.pinMode("A2", PinMode.INPUT);
-            arduino.pinMode("A3", PinMode.INPUT);
+            arduino.pinMode("A0", PinMode.ANALOG);
+            arduino.pinMode("A1", PinMode.ANALOG);
+            arduino.pinMode("A2", PinMode.ANALOG);
+            arduino.pinMode("A3", PinMode.ANALOG);
 
             loopTimer = new DispatcherTimer();
             loopTimer.Interval = TimeSpan.FromMilliseconds(500);
-            loopTimer.Tick += blink;
+            loopTimer.Tick += textMain;
             loopTimer.Start();
         }
 
@@ -140,7 +140,7 @@ namespace Waterplantsystem
 
         }
 
-        private void blink(object sender, object e)
+        private void textMain(object sender, object e)
         {
             Moisture = arduino.analogRead("A2");
             Temperature = arduino.analogRead("A1");
